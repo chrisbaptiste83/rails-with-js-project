@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_010358) do
+ActiveRecord::Schema.define(version: 2020_03_13_171755) do
 
   create_table "cocktail_recipes", force: :cascade do |t|
     t.string "title"
@@ -21,4 +21,13 @@ ActiveRecord::Schema.define(version: 2020_03_13_010358) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.integer "cocktail_recipe_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cocktail_recipe_id"], name: "index_ingredients_on_cocktail_recipe_id"
+  end
+
+  add_foreign_key "ingredients", "cocktail_recipes"
 end
