@@ -10,7 +10,20 @@ class Cocktail {
   
     imageHtml() {
       return `<img src="${this.image_url}" />`
-    } 
+    }  
+
+    static getAll() {
+        if(Cocktail.all.length === 0) {
+          return CocktailAPI.getCocktails().then(cocktails => {
+            Cocktail.all = cocktails.map(cocktailAttributes => 
+              new Cocktail(cocktailAttributes)
+            )
+            return Cocktail.all
+          })
+        } else {
+          return Promise.resolve(Cocktail.all)
+        }
+      }
   
     renderCard() {
       let article = document.createElement('article')
