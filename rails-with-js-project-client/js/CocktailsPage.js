@@ -1,7 +1,7 @@
 class CocktailsPage {
 
-    constructor() {
-      this.cocktials = []
+    constructor(cocktails) {
+      this.cocktails = cocktails
       this.formState = {
         title: '',
         description: '', 
@@ -28,12 +28,21 @@ class CocktailsPage {
           <input type="submit" value="Add Cocktail Recipe" />
         </form>
       `
+    } 
+
+    renderList() { 
+      return this.cocktails.map(cocktail => {
+        return cocktail.renderCard()
+      
+      }).join('') 
     }
+  
   
     render() {
       return `
         <h1>Hello from the Cocktail Recipes Page</h1>
-        ${this.renderForm()}
+        ${this.renderForm()} 
+        ${this.renderList()}
       `
     }
   }
