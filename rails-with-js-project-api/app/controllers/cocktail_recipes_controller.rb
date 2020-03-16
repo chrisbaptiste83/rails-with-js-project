@@ -9,8 +9,10 @@ class CocktailRecipesController < ApplicationController
   end
 
   # GET /cocktail_recipes/1
-  def show
-    render json: @cocktail_recipe
+  def show 
+    options = {}
+    options[:include] = [:ingredients, :'ingredients.name']
+    render json: CocktailRecipeSerializer.new(@cocktail_recipe, options).serialized_json
   end
 
   # POST /cocktail_recipes
