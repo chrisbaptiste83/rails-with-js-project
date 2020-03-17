@@ -8,24 +8,40 @@ class Cocktail {
       
     }
   
-    imageHtml() {
-      return `<img src="${this.image_url}" />`
-    }  
 
     static getAll() {
         if(Cocktail.all.length === 0) {
           return CocktailAPI.getCocktails().then(cocktails => { 
-   
             Cocktail.all = cocktails.map(cocktailAttributes => 
               new Cocktail(cocktailAttributes)
             ) 
-           
             return Cocktail.all
           })
         } else {
           return Promise.resolve(Cocktail.all)
         }
+      } 
+
+    getCocktailDetails() {
+        if(this.ingredients().length === 0) {
+          return CocktailAPI.getCocktailShow(this.id)
+            .then(({ingredients}) => {
+                ingredients.map(ingredientAttributes => Ingredient.findOrCreateBy(ingredientAttributes)) 
+                return this
+            })   
+        } else {
+          return Promise.resolve(this)
+        }
+      }  
+
+    static findById(id) {
+        return Cocktail.all.find(cocktail => cocktail.id == id)
       }
+      
+
+    ingredients(){ 
+        return Ingredient.all.filter(ingredient => ingredient.cocktail_recipe_id == this.id)
+    }   
   
     renderCard() {
       let article = document.createElement('article')
@@ -39,7 +55,7 @@ class Cocktail {
           <h3 class="f5 f4-ns mb0 black-90">${this.title}</h3>
           <h3 class="f6 f5 fw4 mt2 black-60">${this.description}</h3>
         </a>
-        <p><button class="editAlbum" data-id="${this.id}">Edit Recipe</button></p>
+        <p><a href="#/cocktail_recipes/${this.id}" class="cocktailShow ba1 pa2 bg-moon-gray link" data-cocktailid="${this.id}">Cocktail Details</a></p>
       `
       return article.outerHTML
     }
