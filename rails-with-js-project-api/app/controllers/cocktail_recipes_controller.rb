@@ -11,7 +11,7 @@ class CocktailRecipesController < ApplicationController
   # GET /cocktail_recipes/1
   def show 
     options = {}
-    options[:include] = [:ingredients, :'ingredients.name']
+    options[:include] = [:ingredients, :'ingredients.name', :'ingredients.cocktail_recipe_id']
     render json: CocktailRecipeSerializer.new(@cocktail_recipe, options).serialized_json
   end
 
