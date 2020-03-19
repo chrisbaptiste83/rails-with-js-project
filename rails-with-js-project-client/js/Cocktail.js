@@ -37,7 +37,18 @@ class Cocktail {
     static findById(id) {
         return Cocktail.all.find(cocktail => cocktail.id == id)
       }
-      
+     
+    static create(cocktailAttributes) {
+        return CocktailAPI.createCocktail(cocktailAttributes)
+          .then(cocktailJSON => {
+            return new Cocktail(cocktailJSON).save()
+          })
+      }  
+
+    save() {
+      Cocktail.all.push(this)
+       return this
+      }  
 
     ingredients(){ 
         return Ingredient.all.filter(ingredient => ingredient.cocktail_recipe_id == this.id)
@@ -45,17 +56,14 @@ class Cocktail {
   
     renderCard() {
       let article = document.createElement('article')
-      article.className = "fl w-100 w-50-m  w-25-ns pa2-ns"
+      article.className = "pa4-ns fl w-25-ns pv3-ns"
       article.innerHTML = `
         <div class="aspect-ratio aspect-ratio--1x1">
           <img style="background-image:url(${this.image_url});" 
-          class="db bg-center cover aspect-ratio--object" />
+          class="br4 db bg-center cover aspect-ratio--object" />
         </div>
-        <a href="#0" class="ph2 ph0-ns pb3 link db">
-          <h3 class="f5 f4-ns mb0 black-90">${this.title}</h3>
-          <h3 class="f6 f5 fw4 mt2 black-60">${this.description}</h3>
-        </a>
-        <p><a href="#/cocktail_recipes/${this.id}" class="cocktailShow ba1 pa2 bg-moon-gray link" data-cocktailid="${this.id}">Cocktail Details</a></p>
+          <h3 class="f5 f4-ns mb0 light-gray">${this.title}</h3></br>
+        <p><a href="#/cocktail_recipes/${this.id}" class="cocktailShow .mt1 ba1 pa2 bg-moon-gray link" data-cocktailid="${this.id}">Cocktail Details</a></p>
       `
       return article.outerHTML
     }
