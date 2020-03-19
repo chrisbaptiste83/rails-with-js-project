@@ -2,28 +2,27 @@ class CocktailsPage {
 
     constructor(cocktails) {
       this.cocktails = cocktails
-      this.formState = {
-        title: '',
-        description: '', 
-        directions: ''
-      }
     }
   
     renderForm() {
       return `
         <form class="addCocktail">
-          <h3>Add a Cocktail Recipe</h3>
+          <h2>Add Cocktail Recipe:</h2>
           <p>
-            <label class="db">Title</label>
-            <input type="text" name="title" value="${this.formState.title}" />
+            <h2><label class="db">Title</label></h2>
+            <input type="text" name="title" id="title" />
           </p>
           <p>
-            <label class="db">Description</label>
-            <input type="text" name="description" value="${this.formState.description}" />
+            <h2><label class="db">Description</label></h2>
+            <input type="text" name="description" id="artist_name" />
           </p> 
           <p>
-            <label class="db">Directions</label>
-            <input type="text" name="directions" value="${this.formState.directions}" />
+            <h2><label class="db">Directions</label></h2>
+            <input type="text" name="directions" id="directions" />
+          </p> 
+          <p>
+            <h2><label class="db">Image URL:</label></h2>
+            <input type="text" name="image_url" id="image_url" />
           </p>
           <input type="submit" value="Add Cocktail Recipe" />
         </form>
@@ -33,16 +32,19 @@ class CocktailsPage {
     renderList() { 
       return this.cocktails.map(cocktail => {
         return cocktail.renderCard()
-      
       }).join('') 
     }
   
   
     render() {
       return `
-        <h1>Hello from the Cocktail Recipes Page</h1>
+      <center>
+        <h1>Welcome to Chris's Cocktails</h1> 
+      </center>     
         ${this.renderForm()} 
-        ${this.renderList()}
+        <section id="cocktails">
+          ${this.renderList()} 
+        </section> 
       `
     }
   }
