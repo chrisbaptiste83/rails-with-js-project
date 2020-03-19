@@ -6,7 +6,6 @@ class Ingredient {
     }
   
     static findOrCreateBy(attributes) {
-      // if we find a track with the same id as the id in attributes, then return that track, if not create a track, add it to Track.all and return it.
       let found = Ingredient.all.find(ingredient => ingredient.id == attributes.id)
       return found ? found : new Ingredient(attributes).save()
     }
