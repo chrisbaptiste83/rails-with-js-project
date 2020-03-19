@@ -17,7 +17,7 @@ class Ingredient {
   
     render() {
       return `
-        <li>${this.name}</li>
+        <li class="f3 light-gray fw4 mt2 black-60">${this.name}</li>
       `
     }
   
