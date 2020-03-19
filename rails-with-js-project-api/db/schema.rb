@@ -29,5 +29,4 @@ ActiveRecord::Schema.define(version: 2020_03_13_171755) do
     t.index ["cocktail_recipe_id"], name: "index_ingredients_on_cocktail_recipe_id"
   end
 
-  add_foreign_key "ingredients", "cocktail_recipes"
 end

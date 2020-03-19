@@ -1,4 +1,3 @@
-
 CocktailRecipe.create!([
     {id: 44, title: "Echo Park", description: "The Echo Park is another one of those advanced mixologist cocktails that all you pros out there really need to try out.", directions: "Using a fruit peeler, create a long strip of orange peel and roll it up (use two if needed). Place in a serving glass and set aside.\r\nIn a mixing beaker, combine brandy, chile liqueur, Gran Classico Bitter, Amaro, Patchouli bitters and ice. Stir well.\r\nLightly torch the top of the orange peel garnish and pour in mix.", image_url: "https://tipsybartender.com/wp-content/uploads/2018/01/Echo-Park-300x300.jpg"},
     {id: 45, title: "Classic Mojito", description: "From Cuba, one of the best drinks ever created.", directions: "Drop lime wedges, mint leaves and simple syrup into base of glass. Muddle well.\r\nAdd ice and rum before topping with club soda.\r\nGarnish with a lime wedge and a mint sprig.", image_url: "https://tipsybartender.com/wp-content/uploads/2018/01/Classic-Mojito-300x300.jpg"},
@@ -15,7 +14,6 @@ CocktailRecipe.create!([
     {id: 56, title: "Blue Jamaican Long Island", description: "Long Island Tea with a caribbean twist.", directions: "Add ice to serving glass suspending blueberries throughout.\r\nPour clear liquors and sweet and sour into glass before drizzling blue curaçao on top. Top with dark rum.\r\nGarnish with a pineapple wedge.", image_url: "https://tipsybartender.com/wp-content/uploads/2018/01/Blue-Jamaican-Long-Island-300x300.jpg"},
     {id: 57, title: "Jalapeño Cucumber Margarita", description: "Try out this Jalapeño Cucumber Margarita if you love spicy cocktail recipes and twists on the classic margarita.", directions: "Rim edge of glass with salt and lime zest and set aside.\r\nMuddle cucumbers and jalapeños with agave syrup in base of glass. Add ice.\r\nPour over tequila and lime juice and shake well.\r\nAdd cucumber and ice throughout rimmed glass and strain mix over. Garnish with a cucumber slice.\r\n", image_url: "https://tipsybartender.com/wp-content/uploads/2018/02/jalapeno-cucumber-margarita-300x300.jpg"},
     {id: 65, title: "Blue Raspberry Jolly Rancher “Moonshine”", description: "Get messed up with this awesome jolly rancher moonshine.", directions: "Drop jolly rancher candies into base of mason jar and pour over everclear.\u2028\r\nAdd blue raspberry syrup and top with lemon lime soda.\u2028\r\nLet sit, shaking periodically until jolly ranchers have completely dissolved. Serve!\u2028", image_url: "https://tipsybartender.com/wp-content/uploads/2019/02/blue-raspberry-jolly-rancher-moonshine-300x300.jpg"},
-    {id: 66, title: "Margarita Moonshine", description: "Like a Margarita only way stronger.", directions: "Combine sugar and water over low heat until dissolved. Leave to cool and add lemon and lime juice and salt. Stir and add Everclear.\r\nAdd mix to container and close tightly. Leave to infuse in the refrigerator for about two weeks. Serve.", image_url: "https://tipsybartender.com/wp-content/uploads/2019/02/blue-raspberry-jolly-rancher-moonshine-300x300.jpg"},
     {id: 67, title: "Apple Pie Moonshine", description: "Also called cowboy apple juice.", directions: "Combine apple cider, apple juice, sugar, cinnamon and nutmeg in a pot and simmer for at least an hour. Remove from heat.\r\nOnce cool, add everclear and strain into jar. For best flavor, store in refrigerator for a few weeks before serving.", image_url: "https://tipsybartender.com/wp-content/uploads/2019/11/apple-pie-moonshine-300x300.jpg"},
     {id: 68, title: "Adios Motherfucker", description: "You say goodbye, we say hello, and also, Adios Motherf*cker!", directions: "Fill a glass with ice and pour in vodka, rum, gin, tequila sweet & sour, lemon lime soda and blue curaçao. Stir to mix.\r\nGarnish with a lemon slice and a cherry.", image_url: "https://tipsybartender.com/wp-content/uploads/2018/01/Adios-Motherfcker-300x300.jpg"},
     {id: 69, title: "Day Of The Dead Watermelon Margarita", description: "Here it is people, the legendary Day Of The Dead Watermelon Margarita.", directions: "Carve mini watermelon with sugar skull design. Remove the top and scoop out watermelon.\r\nAdd watermelon to blender with tequila, lime juice, simple syrup and ice. Combine well.\r\nPour mix back inside watermelon and serve.\r\n", image_url: "https://tipsybartender.com/wp-content/uploads/2018/10/day-of-the-dead-watermelon-margarita-300x300.jpg"},
@@ -31,15 +29,13 @@ CocktailRecipe.create!([
     {id: 87, title: "Blue Raspberry Mojito", description: "Change up the classic mojito with this Blue Raspberry Mojito and you'll be feeling #blessed.", directions: "Muddle mint leaves, lime wedges and simple syrup in base of glass. Add ice.\r\nAdd ice to tall glass, adding mint leaves and raspberries throughout.\r\nour Pour rum, raspberry vodka, and club soda.\r\nDrizzle Blue Curaçao and garnish with mint leaves and raspberries.", image_url: "https://tipsybartender.com/wp-content/uploads/2019/01/blue-raspberry-mojito-300x300.jpg"}
   ]) 
 
-
 Ingredient.create!([
   {cocktail_recipe_id: 47, name: "Pineapple Juice"},
   {cocktail_recipe_id: 55, name: "Lime Juice"}, 
   {cocktail_recipe_id: 57, name: "Lime Juice"}, 
   {cocktail_recipe_id: 53, name: "Lime Juice"}, 
   {cocktail_recipe_id: 69, name: "Lime Juice"}, 
-  {cocktail_recipe_id: 87, name: "Lime Juice"}, 
-  {cocktail_recipe_id: 66, name: "Lime Juice"},  
+  {cocktail_recipe_id: 87, name: "Lime Juice"},  
   {cocktail_recipe_id: 77, name: "Orange Juice"}, 
   {cocktail_recipe_id: 75, name: "Orange Juice"},
   {cocktail_recipe_id: 56, name: "Gin"}, 
@@ -122,11 +118,6 @@ Ingredient.create!([
   {cocktail_recipe_id: 65, name: "Blue Raspberry Syrup"},
   {cocktail_recipe_id: 65, name: "Blue Raspberry Jolly Ranchers"},
   {cocktail_recipe_id: 75, name: "Everclear"}, 
-  {cocktail_recipe_id: 66, name: "Everclear"}, 
-  {cocktail_recipe_id: 66, name: "Water"},
-  {cocktail_recipe_id: 66, name: "Sugar"},
-  {cocktail_recipe_id: 66, name: "Lemon Juice"},
-  {cocktail_recipe_id: 66, name: "Salt"},
   {cocktail_recipe_id: 67, name: "Apple Juice"},
   {cocktail_recipe_id: 67, name: "Apple Cider"},
   {cocktail_recipe_id: 67, name: "Cinnamon Sticks"},
@@ -144,6 +135,7 @@ Ingredient.create!([
   {cocktail_recipe_id: 87, name: "Raspberry Vodka"},
   {cocktail_recipe_id: 87, name: "Raspberries"}
 ]) 
+
 
 
 
