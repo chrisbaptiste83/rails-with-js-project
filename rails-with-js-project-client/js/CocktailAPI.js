@@ -35,6 +35,20 @@ class CocktailAPI {
           }
         
         })
+    } 
+
+    static createCocktail(cocktailAttributes) {
+      return fetch(`${CocktailAPI.base_url}/cocktail_recipes`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(cocktailAttributes)
+      })
+        .then(res => res.json())
     }
+
+
   }  
     CocktailAPI.base_url = "http://localhost:3000"
