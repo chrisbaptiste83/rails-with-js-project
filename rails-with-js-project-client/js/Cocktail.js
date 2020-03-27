@@ -62,8 +62,8 @@ class Cocktail {
           <img style="background-image:url(${this.image_url});" 
           class="br4 db bg-center cover aspect-ratio--object" />
         </div>
-          <h3 class="f5 f4-ns mb0 light-gray">${this.title}</h3></br>
-        <p><a href="#/cocktail_recipes/${this.id}" class="cocktailShow .mt1 ba1 pa2 bg-moon-gray link" data-cocktailid="${this.id}">Cocktail Details</a></p>
+          <h2 class="f5 f4-ns mb0 light-gray">${this.title}</h3>
+        <p><a href="#/cocktail_recipes/${this.id}" class="cocktailShow f6 link dim br-pill ph3 pv2 mb2 dib white bg-white link" data-cocktailid="${this.id}">Cocktail Details</a></p>
       `
       return article.outerHTML
     }
