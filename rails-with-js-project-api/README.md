@@ -1,24 +1,4 @@
-# README
+Welcome to Chris's Cocktails 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is an application in which a user can view, upload, and edit various cocktail recipes. Simply click on the button to create a cocktail and input your recipe's information. Click on the recipe details button on each recipe to see its ingredients, directions for preparation, and description. Click on the "Add Ingredient" button to add an ingredient to a recipe. Finally, a user can go back to the recipe index page by clicking on the "Go Back" button. 
+  
