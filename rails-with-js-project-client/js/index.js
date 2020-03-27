@@ -11,9 +11,12 @@ document.addEventListener('click', (e) => {
         root.innerHTML = new CocktailShowPage(cocktail).render() 
         })  
     }
-    if(e.target.matches('.cocktailsIndex')) {
-        root.innerHTML = new CocktailsPage(Cocktail.all).render()
-        }
+    if(e.target.matches('.addCocktail')) { 
+        document.querySelector('#index').insertAdjacentHTML('beforeend', AddCocktail.renderForm())
+        } 
+    if(e.target.matches('.addIngredient')) {
+      document.querySelector('#ingredients').insertAdjacentHTML('beforeend', Ingredient.addIngredientField())
+        }     
       }) 
 document.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -23,8 +26,21 @@ document.addEventListener('submit', (e) => {
         Cocktail.create(formData)
          .then(cocktail => {
            document.querySelector('#cocktails').insertAdjacentHTML('beforeend', cocktail.renderCard())
-         })
-    }
+         }) 
+        Cocktail.getAll().then(cocktails => {
+          root.innerHTML = new CocktailsPage(cocktails).render()
+        })
+    } 
+    if(e.target.matches('.addIngredient')) {
+      let ingredientData = {} 
+      ingredientData.name = document.querySelector('input[type="text"]').value 
+      ingredientData.cocktail_recipe_id = document.URL.split('/')[5] 
+      Ingredient.create(ingredientData)
+      .then(ingredient => {
+        document.querySelector('#ingredients').insertAdjacentHTML('afterbegin', ingredient.render())
+      }) 
+    } 
+
   })       
 })
 
@@ -32,7 +48,7 @@ document.addEventListener('submit', (e) => {
 const loadingGif = () => {
   let loading = document.createElement('img')
   loading.src = 'https://i.giphy.com/media/y1ZBcOGOOtlpC/giphy.webp'
-  return loading.outerHTML
+  return loading.outerHTML 
 } 
 
   
