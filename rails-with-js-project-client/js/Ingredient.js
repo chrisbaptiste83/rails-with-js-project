@@ -8,7 +8,26 @@ class Ingredient {
     static findOrCreateBy(attributes) {
       let found = Ingredient.all.find(ingredient => ingredient.id == attributes.id)
       return found ? found : new Ingredient(attributes).save()
-    }
+    } 
+
+    static addIngredientField(){
+      return ` 
+      <form class="addIngredient">
+        <p>
+          <h3><label class="db">Ingredient Name:</label></h3>
+          <input type="text" class="db w-60" name="ingredient" id="ingredient[name]" /><br> 
+        </p>   
+          <input type="submit" value="Add Ingredient to Cocktail" />  
+      </form>
+    ` 
+    } 
+
+    static create(ingredientAttributes) {
+      return CocktailAPI.createIngredient(ingredientAttributes)
+        .then(ingredientJSON => {
+          return new Ingredient(ingredientJSON).save()
+        })
+    }  
   
     save() {
       Ingredient.all.push(this)
