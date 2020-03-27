@@ -3,31 +3,6 @@ class CocktailsPage {
     constructor(cocktails) {
       this.cocktails = cocktails
     }
-  
-    renderForm() {
-      return `
-        <form class="addCocktail">
-          <h2>Add Cocktail Recipe:</h2>
-          <p>
-            <h2><label class="db">Title</label></h2>
-            <input type="text" name="title" id="title" />
-          </p>
-          <p>
-            <h2><label class="db">Description</label></h2>
-            <input type="text" name="description" id="artist_name" />
-          </p> 
-          <p>
-            <h2><label class="db">Directions</label></h2>
-            <input type="text" name="directions" id="directions" />
-          </p> 
-          <p>
-            <h2><label class="db">Image URL:</label></h2>
-            <input type="text" name="image_url" id="image_url" />
-          </p>
-          <input type="submit" value="Add Cocktail Recipe" />
-        </form>
-      `
-    } 
 
     renderList() { 
       return this.cocktails.map(cocktail => {
@@ -37,11 +12,13 @@ class CocktailsPage {
   
   
     render() {
-      return `
-      <center>
-        <h1>Welcome to Chris's Cocktails</h1> 
-      </center>     
-        ${this.renderForm()} 
+      return ` 
+      <center>   
+        <section id="index"> 
+          <h1 class="f3 f1-m f-headline-l">Chris's Cocktails</h1> 
+          <button class="addCocktail f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Create a Cocktail</button> 
+        </section><br></br><br>
+      </center> 
         <section id="cocktails">
           ${this.renderList()} 
         </section> 
