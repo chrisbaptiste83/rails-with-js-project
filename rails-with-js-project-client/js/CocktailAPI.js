@@ -1,4 +1,5 @@
 class CocktailAPI {
+
     static getCocktails() {
       return fetch(`${CocktailAPI.base_url}/cocktail_recipes`).then(res => res.json())
     } 
@@ -36,10 +37,9 @@ class CocktailAPI {
                 cocktail_recipe_id
               }
             })
-          }
-        
-        })
-    } 
+          }  
+      })
+  } 
 
     static createCocktail(cocktailAttributes) {
       return fetch(`${CocktailAPI.base_url}/cocktail_recipes`, {
@@ -51,11 +51,10 @@ class CocktailAPI {
         body: JSON.stringify(cocktailAttributes)
       })
         .then(res => res.json())
-    } 
+    }
+
     static createIngredient(ingredientAttributes) { 
-      
       return fetch(`${CocktailAPI.base_url}/ingredients`, {
-     
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
