@@ -25,9 +25,8 @@ class CocktailShowPage {
         <h1>Ingredients:</h1>
           <section id="ingredients"> 
               ${this.renderIngredientList()} 
-              <button class="addIngredient">Add Ingredient</button> 
-          </section> 
-               
+              <button onclick = "this.disabled = true;" class="addIngredient f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Add Ingredient(s)</button> 
+          </section>       
         <h1>Directions:</h1>
         <h3 class="f4 light-gray fw5 mt2 black-60">${this.cocktail.directions}</h3> 
         <button onclick="javascript:history.go()">Go Back</button>
