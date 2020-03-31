@@ -29,7 +29,8 @@ class CocktailShowPage {
           </section>       
         <h1>Directions:</h1>
         <h3 class="f4 light-gray fw5 mt2 black-60">${this.cocktail.directions}</h3> 
-        <button onclick="javascript:history.go()">Go Back</button>
+        <button class="deleteCocktail f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Delete This Cocktail</button></br><br> 
+        <button onclick="javascript:history.go()">Back to Cocktails</button>
       `
       return article.outerHTML 
     }

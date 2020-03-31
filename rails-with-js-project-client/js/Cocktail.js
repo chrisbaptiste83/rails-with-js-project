@@ -31,7 +31,13 @@ class Cocktail {
         } else {
           return Promise.resolve(this)
         }
-    }  
+    }
+    
+    deleteCocktail(){
+      return fetch(`${CocktailAPI.base_url}/cocktail_recipes/${cocktailId}`,{
+        method:'delete'
+      }) 
+    }
 
     static findById(id) {
         return Cocktail.all.find(cocktail => cocktail.id == id)

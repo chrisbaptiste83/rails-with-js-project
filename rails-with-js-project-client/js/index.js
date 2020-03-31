@@ -19,6 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
         root.innerHTML = new CocktailShowPage(cocktail).render() 
         })  
       }
+      if(e.target.matches('.deleteCocktail')) {
+        let cocktailId = document.URL.split('/')[5] 
+        let cocktail = Cocktail.findById(cocktailId) 
+        debugger
+        cocktail.deleteCocktail().then(cocktail => { 
+          document.querySelector('#cocktails').delete('cocktail.renderCard()')
+        })  
+      }
       if(e.target.matches('.createCocktail')) { 
           document.querySelector('#index').insertAdjacentHTML('beforeend', AddCocktail.renderForm())
           } 
