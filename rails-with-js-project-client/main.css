@@ -1,4 +1,5 @@
-body { 
+  
+  body { 
     padding-top: 90px; 
     background: linear-gradient(
       rgba(20,20,20, .5), 
@@ -8,8 +9,6 @@ body {
   
     background-attachment:fixed;
     background-size:cover;
-    
-      
   } 
 
   .starter-template {
@@ -18,29 +17,25 @@ body {
 
   h1 {
     color: #D3D3D3;
-
-     } 
-
+  } 
+  
   a, a:visited {
     color: black; 
     border-radius: 3px;
-    } 
-
+  } 
 
   h2,h3,h4,small,h5,h6,p {
     color: #D3D3D3;
-
-    } 
+  } 
 
   .button-style {
-      background: rgba(0,0,0, 0.5);
-      width: 100%; 
-        
-    }
+    background: rgba(0,0,0, 0.5);
+      idth: 100%;     
+  }
    
   input, textarea{
-  background-color:#0000;
-  color: #FFF;
+    background-color:#0000;
+    color: #FFF;
   }
 
   select {
@@ -58,7 +53,7 @@ body {
   }
   
   select:hover {
-     background-color: dodgerblue;
-    } 
+    background-color: dodgerblue;
+  } 
 
     
