@@ -4,8 +4,7 @@ class Cocktail {
       this.title = title 
       this.directions = directions
       this.description = description
-      this.image_url = image_url
-      
+      this.image_url = image_url 
     }
   
 
@@ -20,7 +19,7 @@ class Cocktail {
         } else {
           return Promise.resolve(Cocktail.all)
         }
-      } 
+    } 
 
     getCocktailDetails() {
         if(this.ingredients().length === 0) {
@@ -32,26 +31,26 @@ class Cocktail {
         } else {
           return Promise.resolve(this)
         }
-      }  
+    }  
 
     static findById(id) {
         return Cocktail.all.find(cocktail => cocktail.id == id)
-      }
+    }
      
     static create(cocktailAttributes) {
         return CocktailAPI.createCocktail(cocktailAttributes)
           .then(cocktailJSON => {
             return new Cocktail(cocktailJSON).save()
           })
-      }  
+    }  
 
     save() {
       Cocktail.all.push(this)
        return this
-      }  
+    }  
 
     ingredients(){ 
-        return Ingredient.all.filter(ingredient => ingredient.cocktail_recipe_id == this.id)
+      return Ingredient.all.filter(ingredient => ingredient.cocktail_recipe_id == this.id)
     }   
   
     renderCard() {
@@ -63,7 +62,7 @@ class Cocktail {
           class="br4 db bg-center cover aspect-ratio--object" />
         </div>
           <h2 class="f5 f4-ns mb0 light-gray">${this.title}</h3>
-        <p><a href="#/cocktail_recipes/${this.id}" class="cocktailShow f6 link dim br-pill ph3 pv2 mb2 dib white bg-white link" data-cocktailid="${this.id}">Cocktail Details</a></p>
+        <p><a href="#/cocktail_recipes/${this.id}" class="cocktailShow f6 br-pill ph3 pv2 mb2 dib bg-gray link" data-cocktailid="${this.id}">Cocktail Details</a></p>
       `
       return article.outerHTML
     }
