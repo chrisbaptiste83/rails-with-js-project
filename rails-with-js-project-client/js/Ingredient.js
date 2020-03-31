@@ -12,15 +12,28 @@ class Ingredient {
 
     static addIngredientField(){
       return ` 
-      <form class="addIngredient">
-        <p>
-          <h3><label class="db">Ingredient Name:</label></h3>
-          <input type="text" class="db w-60" name="ingredient" id="ingredient[name]" /><br> 
-        </p>   
+        <form class="addIngredient">
+          <p>
+            <h3><label class="db">Ingredient Name:</label></h3>
+            <input type="text" class="db w-60" name="ingredient" id="ingredient" /><br> 
+          </p>   
           <input type="submit" value="Add Ingredient to Cocktail" />  
-      </form>
-    ` 
+        </form>
+        ` 
     } 
+
+    static addIngredientFields(){
+      return ` 
+        <form class="addCocktailIngredient">
+          <p>
+            <h3><label class="db">Ingredient Name:</label></h3>
+            <input type="text" class="db w-60" name="ingredient" id="ingredient[name]" /><br>   
+          </p> 
+          <input type="submit" value="Add to Cocktail" />  
+        </form></br>
+        <button class="seeCocktail f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Go To Cocktail</button>    
+        ` 
+    }
 
     static create(ingredientAttributes) {
       return CocktailAPI.createIngredient(ingredientAttributes)
@@ -42,4 +55,6 @@ class Ingredient {
   
   }
   
-  Ingredient.all = []
+  Ingredient.all = [] 
+
+  
