@@ -25,12 +25,13 @@ class CocktailShowPage {
         <h1>Ingredients:</h1>
           <section id="ingredients"> 
               ${this.renderIngredientList()} 
-              <button onclick = "this.disabled = true;" class="addIngredient f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Add Ingredient(s)</button> 
+              <button class="deleteIngredient f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Delete Ingredient(s)</button><br> 
+              <button onclick = "this.disabled = true;" class="addIngredient f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Add Ingredient(s)</button>     
           </section>       
         <h1>Directions:</h1>
         <h3 class="f4 light-gray fw5 mt2 black-60">${this.cocktail.directions}</h3> 
-        <button class="deleteCocktail f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Delete This Cocktail</button></br><br> 
-        <button onclick="javascript:history.go()">Back to Cocktails</button>
+        <p><a href="http://localhost:8000" class="f6 br-pill ph3 pv2 mb2 dib bg-gray link">Back to Cocktails</a></p> 
+        <button class="editCocktail f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" data-cocktailid="${this.id}">Edit Recipe</button>
       `
       return article.outerHTML 
     }
