@@ -19,13 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
         root.innerHTML = new CocktailShowPage(cocktail).render() 
         })  
       }
-      if(e.target.matches('.deleteCocktail')) {
+      if(e.target.matches('.deleteIngredient')) {
         let cocktailId = document.URL.split('/')[5] 
-        let cocktail = Cocktail.findById(cocktailId) 
-        debugger
-        cocktail.deleteCocktail().then(cocktail => { 
-          document.querySelector('#cocktails').delete('cocktail.renderCard()')
-        })  
+        let cocktail = Cocktail.findById(cocktailId)
+        let firstCocktailIngredient = cocktail.ingredients()[0] || cocktail.ingredients()[1]
+        let ingredientId = firstCocktailIngredient.id 
+        CocktailAPI.deleteIngredient(cocktailId,ingredientId)
+            ingredient = document.querySelectorAll('#ingredients')[0].children[0].firstElementChild 
+            ingredient.remove() 
+      } 
+      if(e.target.matches('.editCocktail')) { 
+        let cocktailId = document.URL.split('/')[5] 
+        let cocktail = Cocktail.findById(cocktailId)
+        root.innerHTML = cocktail.renderUpdateForm()
       }
       if(e.target.matches('.createCocktail')) { 
           document.querySelector('#index').insertAdjacentHTML('beforeend', AddCocktail.renderForm())
@@ -66,7 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
           .then(ingredient => {
           document.querySelector('#cocktailIngredients').insertAdjacentHTML('afterbegin', ingredient.render())
           }) 
-      }
+      } 
+
+      
   })
 
 })
