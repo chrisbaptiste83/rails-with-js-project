@@ -65,10 +65,10 @@ class CocktailAPI {
         .then(res => res.json())
     } 
     
-    static deleteCocktail(cocktailId){
-      return fetch(`${CocktailAPI.base_url}/cocktail_recipes/${cocktailId}`,{
-        method:'delete'
-      })  
+    static deleteIngredient(cocktailId,ingredientId){ 
+      return fetch(`${CocktailAPI.base_url}/cocktail_recipes/${cocktailId}/ingredients/${ingredientId}`,{
+        method:'DELETE'
+      }) 
     }
 }  
     CocktailAPI.base_url = "http://localhost:3000"
