@@ -33,11 +33,6 @@ class Cocktail {
         }
     }
     
-    deleteCocktail(){
-      return fetch(`${CocktailAPI.base_url}/cocktail_recipes/${cocktailId}`,{
-        method:'delete'
-      }) 
-    }
 
     static findById(id) {
         return Cocktail.all.find(cocktail => cocktail.id == id)
@@ -57,7 +52,41 @@ class Cocktail {
 
     ingredients(){ 
       return Ingredient.all.filter(ingredient => ingredient.cocktail_recipe_id == this.id)
-    }   
+    } 
+    
+    renderUpdateForm(){
+      return `
+            <article class="center mw8 mw9-ns hidden ba mv4">
+                <h1 class="f3 bg-near-black white mv0 pv2 ph3">Edit Cocktail:</h1>
+                <div class="pa3 bt"> 
+                <center>
+                <form class="updateCocktail"> 
+                    <p>
+                        <h2><label class="db">Title:</label></h2>
+                        <input type="text" class="db w-60" name="title" id="title" value="${this.title}"/>
+                    </p>
+                    <p>
+                        <h2><label class="db">Description:</label></h2>
+                        <input type="text" class="db w-60" name="description" id="description" value="${this.description}"/>
+                    </p> 
+                    <p>
+                        <h2><label class="db">Directions:</label></h2>
+                        <input type="text" class="db w-60" name="directions" id="directions" value="${this.directions}"/>
+                    </p> 
+                    <p>
+                        <h2><label class="db">Image URL:</label></h2>
+                        <input type="text" class="db w-60 h--80" name="image_url" id="image_url" value="${this.image_url}"/>
+                    </p>
+                        <input type="submit" value="Edit Cocktail"/></br><br>
+                </form>
+                <section id="cocktailIngredients"> 
+                    </br><button onclick = "this.disabled = true;" class="addIngredients f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Add Ingredient(s)</button>
+                </section>
+                </center>
+                </div>
+            </article>
+            `
+    }
   
     renderCard() {
       let article = document.createElement('article')
@@ -68,7 +97,7 @@ class Cocktail {
           class="br4 db bg-center cover aspect-ratio--object" />
         </div>
           <h2 class="f5 f4-ns mb0 light-gray">${this.title}</h3>
-        <p><a href="#/cocktail_recipes/${this.id}" class="cocktailShow f6 br-pill ph3 pv2 mb2 dib bg-gray link" data-cocktailid="${this.id}">Cocktail Details</a></p>
+        <p><a href="#/cocktail_recipes/${this.id}" class="cocktailShow f6 br-pill ph3 pv2 mb2 dib bg-gray link" data-cocktailid="${this.id}">Cocktail Details</a></p>  
       `
       return article.outerHTML
     }
