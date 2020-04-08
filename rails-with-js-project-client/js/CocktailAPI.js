@@ -51,8 +51,7 @@ class CocktailAPI {
         body: JSON.stringify(cocktailAttributes)
       })
         .then(res => res.json())
-    }
-
+    }  
     static createIngredient(ingredientAttributes) { 
       return fetch(`${CocktailAPI.base_url}/ingredients`, {
         method: 'POST',
@@ -64,7 +63,6 @@ class CocktailAPI {
       })
         .then(res => res.json())
     } 
-    
     static deleteIngredient(cocktailId,ingredientId){ 
       return fetch(`${CocktailAPI.base_url}/cocktail_recipes/${cocktailId}/ingredients/${ingredientId}`,{
         method:'DELETE'

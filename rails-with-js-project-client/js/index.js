@@ -28,11 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ingredient = document.querySelectorAll('#ingredients')[0].children[0].firstElementChild 
             ingredient.remove() 
       } 
-      if(e.target.matches('.editCocktail')) { 
-        let cocktailId = document.URL.split('/')[5] 
-        let cocktail = Cocktail.findById(cocktailId)
-        root.innerHTML = cocktail.renderUpdateForm()
-      }
       if(e.target.matches('.createCocktail')) { 
           document.querySelector('#index').insertAdjacentHTML('beforeend', AddCocktail.renderForm())
           } 
@@ -73,8 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
           document.querySelector('#cocktailIngredients').insertAdjacentHTML('afterbegin', ingredient.render())
           }) 
       } 
-
-      
   })
 
 })

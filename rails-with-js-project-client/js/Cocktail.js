@@ -43,8 +43,8 @@ class Cocktail {
           .then(cocktailJSON => {
             return new Cocktail(cocktailJSON).save()
           })
-    }  
-
+    } 
+    
     save() {
       Cocktail.all.push(this)
        return this
