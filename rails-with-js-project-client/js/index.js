@@ -100,7 +100,7 @@ class Cocktail {
         class="br4 db bg-center cover aspect-ratio--object" />
       </div>
         <h2 class="f5 f4-ns mb0 light-gray">${this.title}</h3>
-      <p><a href="#/cocktail_recipes/${this.id}" class="cocktailShow f6 br-pill ph3 pv2 mb2 dib bg-gray link" data-cocktailid="${this.id}">Cocktail Details</a></p>  
+      <p><a href="#/cocktail_recipes/${this.id}" class="cocktailShow f6 br-pill ph3 pv2 mb2 dib bg-gray link" data-cocktail-id="${this.id}">Cocktail Details</a></p>  
     `
     return article.outerHTML
   }
@@ -177,6 +177,7 @@ class CocktailAPI {
     return fetch(`${CocktailAPI.base_url}/cocktail_recipes/${cocktailId}/ingredients/${ingredientId}`,{
       method:'DELETE'
     }) 
+      .then(res => res.json())
   }
 }  
 
@@ -209,12 +210,11 @@ class CocktailShowPage {
       <h1>Ingredients:</h1>
         <section id="ingredients"> 
             ${this.renderIngredientList()} 
-            <button class="deleteIngredient f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Delete Ingredient(s)</button><br> 
             <button onclick = "this.disabled = true;" class="addIngredient f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Add Ingredient(s)</button>     
         </section>       
       <h1>Directions:</h1>
       <h3 class="f4 light-gray fw5 mt2 black-60">${this.cocktail.directions}</h3> 
-      <p><a href="http://localhost:8000" class="f6 br-pill ph3 pv2 mb2 dib bg-gray link">Back to Cocktails</a></p> 
+      <p><a href="#" class="cocktailsIndex f6 br-pill ph3 pv2 mb2 dib bg-gray link">Back to Cocktails</a></p> 
     `
     return article.outerHTML 
   }
@@ -282,6 +282,9 @@ class Ingredient {
       </form></br>
       <button class="seeCocktail f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Go To Cocktail</button>    
       ` 
+  } 
+  static findById(id) {
+    return Ingredient.all.find(ingredient => ingredient.id == id)
   }
 
   static create(ingredientAttributes) {
@@ -289,8 +292,15 @@ class Ingredient {
       .then(ingredientJSON => {
         return new Ingredient(ingredientJSON).save()
       })
-  }  
+  } 
 
+  remove() { 
+      return CocktailAPI.deleteIngredient(this.cocktail_recipe_id, this.id)
+        .then(ingredient => {
+          let newIngredients = Ingredient.all.filter(ing => ing.id != ingredient.id)
+          Ingredient.all = newIngredients
+        })   
+  } 
   save() {
     Ingredient.all.push(this)
     return this
@@ -298,7 +308,8 @@ class Ingredient {
 
   render() {
     return `
-      <li class="f3 light-gray fw4 mt2 black-60">${this.name}</li>
+      <li class="f3 light-gray fw4 mt2 black-60">${this.name} <button class="deleteIngredient f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" data-ingredient-id="${this.id}" data-cocktail-id="${this.cocktail_recipe_id}">Delete</button></li>
+      
     `
   }
 
@@ -315,37 +326,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('click', (e) => {
       if(e.target.matches('.cocktailShow')) {
-          let cocktail = Cocktail.findById(e.target.dataset.cocktailid)
+          let cocktail = Cocktail.findById(e.target.dataset.cocktailId)
           cocktail.getCocktailDetails().then(cocktail => { 
-          root.innerHTML = new CocktailShowPage(cocktail).render() 
+            root.innerHTML = new CocktailShowPage(cocktail).render() 
           })  
       }
       if(e.target.matches('.seeCocktail')) { 
         let lastCocktail = Cocktail.all[Cocktail.all.length-1]
         let cocktail = Cocktail.findById(lastCocktail.id)
         cocktail.getCocktailDetails().then(cocktail => { 
-        root.innerHTML = new CocktailShowPage(cocktail).render() 
+          root.innerHTML = new CocktailShowPage(cocktail).render() 
         })  
       }
-      if(e.target.matches('.deleteIngredient')) {
-        let cocktailId = document.URL.split('/')[5] 
-        let cocktail = Cocktail.findById(cocktailId)
-        let firstCocktailIngredient = cocktail.ingredients()[0] || cocktail.ingredients()[1]
-        let ingredientId = firstCocktailIngredient.id 
-        CocktailAPI.deleteIngredient(cocktailId,ingredientId)
-            ingredient = document.querySelectorAll('#ingredients')[0].children[0].firstElementChild 
-            ingredient.remove() 
+      if(e.target.matches('.deleteIngredient')) { 
+        let ingredient = Ingredient.findById(e.target.dataset.ingredientId)
+        ingredient.remove()
+          .then(ingredient => {
+            cocktailIngredient = e.target.parentElement
+            cocktailIngredient.remove() 
+          }) 
+
       } 
       if(e.target.matches('.createCocktail')) { 
           document.querySelector('#index').insertAdjacentHTML('beforeend', AddCocktail.renderForm())
-          } 
+      } 
       if(e.target.matches('.addIngredients')) { 
           document.querySelector('#cocktailIngredients').insertAdjacentHTML('beforeend', Ingredient.addIngredientFields()) 
-          }         
+      }         
       if(e.target.matches('.addIngredient')) {
         document.querySelector('#ingredients').insertAdjacentHTML('beforeend', Ingredient.addIngredientField())
-          }     
-        }) 
+      } 
+      if(e.target.matches('.cocktailsIndex')) {
+        Cocktail.getAll().then(cocktails => {
+          root.innerHTML = new CocktailsPage(cocktails).render()
+        })
+      }    
+  }) 
 
   document.addEventListener('submit', (e) => {
       e.preventDefault()
@@ -363,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ingredientData.cocktail_recipe_id = document.URL.split('/')[5] 
         Ingredient.create(ingredientData)
           .then(ingredient => {
-          document.querySelector('#ingredients').insertAdjacentHTML('afterbegin', ingredient.render())
+          document.querySelector('#ingredients ul').insertAdjacentHTML('beforeend', ingredient.render())
           }) 
       }
       if(e.target.matches('.addCocktailIngredient')) { 
@@ -373,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ingredientData.cocktail_recipe_id = lastCocktail.id 
         Ingredient.create(ingredientData)
           .then(ingredient => {
-          document.querySelector('#cocktailIngredients').insertAdjacentHTML('afterbegin', ingredient.render())
+          document.querySelector('#cocktailIngredients').insertAdjacentHTML('beforeend', ingredient.render())
           }) 
       } 
   })
