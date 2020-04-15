@@ -280,7 +280,7 @@ class Ingredient {
         </p> 
         <input type="submit" value="Add to Cocktail" />  
       </form></br>
-      <button class="seeCocktail f6 link dim br-pill ph3 pv2 mb2 dib white bg-black">Go To Cocktail</button>    
+      <p><a href="#/cocktail_recipes/${Cocktail.all[Cocktail.all.length-1].id}" class="seeCocktail f6 br-pill ph3 pv2 mb2 dib bg-gray link" data-cocktail-id="${Cocktail.all[Cocktail.all.length-1].id}">Go To Cocktail</a></p>   
       ` 
   } 
   static findById(id) {
@@ -308,7 +308,7 @@ class Ingredient {
 
   render() {
     return `
-      <li class="f3 light-gray fw4 mt2 black-60">${this.name} <button class="deleteIngredient f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" data-ingredient-id="${this.id}" data-cocktail-id="${this.cocktail_recipe_id}">Delete</button></li>
+      <li class="f3 light-gray fw4 mt2 black-60">${this.name} <button class="deleteIngredient f6 link dim br-pill ph3 pv2 mb2 dib white bg-black" data-ingredient-id="${this.id}">Delete</button></li>
       
     `
   }
@@ -332,8 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
           })  
       }
       if(e.target.matches('.seeCocktail')) { 
-        let lastCocktail = Cocktail.all[Cocktail.all.length-1]
-        let cocktail = Cocktail.findById(lastCocktail.id)
+        let cocktail = Cocktail.findById(e.target.dataset.cocktailId)
         cocktail.getCocktailDetails().then(cocktail => { 
           root.innerHTML = new CocktailShowPage(cocktail).render() 
         })  
@@ -345,7 +344,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cocktailIngredient = e.target.parentElement
             cocktailIngredient.remove() 
           }) 
-
       } 
       if(e.target.matches('.createCocktail')) { 
           document.querySelector('#index').insertAdjacentHTML('beforeend', AddCocktail.renderForm())
@@ -389,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ingredientData.cocktail_recipe_id = lastCocktail.id 
         Ingredient.create(ingredientData)
           .then(ingredient => {
-          document.querySelector('#cocktailIngredients').insertAdjacentHTML('beforeend', ingredient.render())
+          document.querySelector('#cocktailIngredients').insertAdjacentHTML('afterbegin', ingredient.render())
           }) 
       } 
   })
