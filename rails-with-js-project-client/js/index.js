@@ -221,7 +221,6 @@ class CocktailShowPage {
 }
 
 class CocktailsPage {
-  
   constructor(cocktails) {
     this.cocktails = cocktails
   }
@@ -247,7 +246,7 @@ class CocktailsPage {
   }
 }
 
-class Ingredient {
+class Ingredient { 
   constructor({id, name, cocktail_recipe_id}) {
     this.id = id
     this.name = name
@@ -283,6 +282,7 @@ class Ingredient {
       <p><a href="#/cocktail_recipes/${Cocktail.all[Cocktail.all.length-1].id}" class="seeCocktail f6 br-pill ph3 pv2 mb2 dib bg-gray link" data-cocktail-id="${Cocktail.all[Cocktail.all.length-1].id}">Go To Cocktail</a></p>   
       ` 
   } 
+
   static findById(id) {
     return Ingredient.all.find(ingredient => ingredient.id == id)
   }
@@ -300,7 +300,8 @@ class Ingredient {
           let newIngredients = Ingredient.all.filter(ing => ing.id != ingredient.id)
           Ingredient.all = newIngredients
         })   
-  } 
+  }
+
   save() {
     Ingredient.all.push(this)
     return this
@@ -391,7 +392,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }) 
       } 
   })
-
 })
 
 
