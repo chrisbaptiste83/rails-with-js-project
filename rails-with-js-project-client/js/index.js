@@ -162,6 +162,7 @@ class CocktailAPI {
     })
       .then(res => res.json())
   }  
+
   static createIngredient(ingredientAttributes) { 
     return fetch(`${CocktailAPI.base_url}/ingredients`, {
       method: 'POST',
@@ -173,6 +174,7 @@ class CocktailAPI {
     })
       .then(res => res.json())
   } 
+
   static deleteIngredient(cocktailId,ingredientId){ 
     return fetch(`${CocktailAPI.base_url}/cocktail_recipes/${cocktailId}/ingredients/${ingredientId}`,{
       method:'DELETE'
@@ -369,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
           e.target.querySelectorAll('input[type="text"]').forEach(input => formData[input.id] = input.value) 
           Cocktail.create(formData)
           .then(cocktail => {
-            document.querySelector('#cocktails').insertAdjacentHTML('beforeend', cocktail.renderCard())
+            document.querySelector('#cocktails').insertAdjacentHTML('afterbegin', cocktail.renderCard())
           })  
       } 
       if(e.target.matches('.addIngredient')) {
