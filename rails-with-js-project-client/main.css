@@ -1,5 +1,4 @@
-  
-  body { 
+body { 
     padding-top: 90px; 
     background: linear-gradient(
       rgba(20,20,20, .5), 
@@ -30,7 +29,7 @@
 
   .button-style {
     background: rgba(0,0,0, 0.5);
-      idth: 100%;     
+    width: 100%;     
   }
    
   input, textarea{
@@ -54,6 +53,4 @@
   
   select:hover {
     background-color: dodgerblue;
-  } 
-
-    
+  }
