@@ -10,10 +10,6 @@ A full-stack cocktail recipe manager built with a **Rails API** backend and a **
 - Add ingredients to an existing cocktail
 - Fully dynamic UI — no page reloads
 
-## Screenshots
-
-> ![Cocktail App](rails-with-js-project-client/Bar3.jpg)
-
 ## Tech Stack
 
 | Layer | Technology |
